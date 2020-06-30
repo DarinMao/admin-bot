@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Submission Status{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/js/status.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-3 font-weight-normal">Submission Status</h1>
+<hr>
+<p class="small text-muted">submitted at {{ job.timestamp | date() }}</p>
+<div class="d-flex flex-column mb-5">
+    <div class="d-flex flex-row justify-content-between">
+        <div>{{ job.data.challenge.displayName }}</div>
+        <div id="job-state">loading...</div>
+    </div>
+    <div class="progress">
+        <div id="job-progress" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</div>
+<div id="output">
+</div>
+<div id="error">
+</div>
+{% if job.data.submission %}
+<div>Submission:
+    <div>
+        <code>{{ job.data.submission }}</code>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}{{ challenge.displayName }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-3 font-weight-normal">{{ challenge.displayName }}</h1>
+<hr>
+{% if challenge.message %}
+<h4 class="font-weight-normal mb-4">{{ challenge.message }}</h4>
+{% endif %}
+{% if challenge.filter %}
+<div>Submissions must match the filter:
+    <div><code>{{ challenge.filter }}</code></div>
+</div>
+{% endif %}
+{% if error %}
+<p class="error">{{ error }}</p>
+{% else %}
+<form class="form-submit" method="POST">
+    {% if submission %}
+    <div>You are submitting:
+        <div><code>{{ submission }}</code></div>
+    </div>
+    {% endif %}
+    <input id="_csrf" name="_csrf" type="hidden" value="{{ csrf }}">
+    {% if recaptcha %}
+    <div class="form-group">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <div class="g-recaptcha" data-sitekey="{{ recaptcha.key }}"></div>
+        {% if recaptcha.errors %}
+	    <p style="color: red;">
+		    {% for error in recaptcha.errors %}
+		    {{ error }} <br>
+		    {% endfor %}
+	    </p>
+	    {% endif %}
+    </div>
+    {% endif %}
+
+    <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Submit">
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{
+  "name": "admin-bot-puppeteer",
+  "version": "1.0.0",
+  "description": "Experimental HTTP Puppeteer runner for client-side CTF challenges",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarinMao/admin-bot-puppeteer.git"
+  },
+  "author": "Darin Mao",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/DarinMao/admin-bot-puppeteer/issues"
+  },
+  "homepage": "https://github.com/DarinMao/admin-bot-puppeteer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bull": "^3.14.0",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "got": "^11.3.0",
+    "http": "0.0.1-security",
+    "nunjucks": "^3.2.1",
+    "nunjucks-date-filter": "^0.1.1",
+    "puppeteer": "^4.0.1",
+    "socket.io": "^2.3.0",
+    "yaml": "^1.10.0"
+  }
+}
