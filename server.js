@@ -12,13 +12,6 @@ const RECAPTCHA_ERROR_CODES = {
     "missing-input-response": "The response parameter is missing.",
     "invalid-input-response": "The response parameter is invalid or malformed."
 };
-const STATUS_MESSAGES = {
-    "PENDING": "Processing of your submission has not started yet, or the submission does not exist.",
-    "STARTED": "Your submission started processing.",
-    "SUCCESS": "Your submission has been successfully processed.",
-    "FAILURE": "Your submission failed to process.",
-    "PROGRESS": "Your submission is being processed.",
-};
 
 const path = require("path");
 const got = require("got");
@@ -29,6 +22,7 @@ const challenges = require("./challenges.js");
 // bull
 const Queue = require("bull");
 const submissionQueue = new Queue("submission", REDIS_URL);
+const { v4: uuidv4 } = require("uuid");
 
 // express
 const express = require("express");
@@ -46,7 +40,7 @@ const parseForm = bodyParser.urlencoded({ extended: false });
 nunjucks.configure("templates", {
     autoescape: true,
     express: app
-}).addFilter('date', dateFilter);
+}).addFilter("date", dateFilter);
 app.use(express.static("static"));
 app.use(cookieParser())
 
@@ -87,7 +81,7 @@ app.post("/submit/:challenge", parseForm, csrfProtection, async (req, res) => {
         const job = await submissionQueue.add({
             challenge: req.challenge, 
             submission: req.submission
-        });
+        }, {jobId: uuidv4()});
         res.redirect(`/status/${job.id}`);
     } else {
         const errors = recaptchaResponse["error-codes"].map(error => RECAPTCHA_ERROR_CODES[error]);
