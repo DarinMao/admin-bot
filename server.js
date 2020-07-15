@@ -2,7 +2,6 @@
 require("dotenv").config()
 
 const TESTING = (process.env.NODE_ENV === "testing"); 
-const PORT = process.env.PORT || 8000;
 const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
 const RECAPTCHA_PUBLIC_KEY = process.env.RECAPTCHA_PUBLIC_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
 const RECAPTCHA_PRIVATE_KEY = process.env.RECAPTCHA_PRIVATE_KEY || "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
@@ -159,7 +158,4 @@ submissionQueue.on("global:progress", sendProgress);
 submissionQueue.on("global:completed", sendCompleted);
 submissionQueue.on("global:failed", sendFailed);
 
-// lets gooo
-http.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-});
+module.exports = {app: app, http: http}
