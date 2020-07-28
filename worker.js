@@ -1,5 +1,5 @@
 require("dotenv").config()
-const TESTING = (process.env.NODE_ENV === "testing"); 
+const TESTING = (process.env.NODE_ENV === "testing");
 
 const Queue = require("bull");
 const puppeteer = require("puppeteer");
