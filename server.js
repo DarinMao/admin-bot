@@ -2,7 +2,7 @@
 require("dotenv").config()
 
 const TESTING = (process.env.NODE_ENV === "testing"); 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
 const RECAPTCHA_PUBLIC_KEY = process.env.RECAPTCHA_PUBLIC_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
 const RECAPTCHA_PRIVATE_KEY = process.env.RECAPTCHA_PRIVATE_KEY || "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";

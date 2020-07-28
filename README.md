@@ -2,6 +2,14 @@
 Puppeteer service for client-side CTF challenges
 
 ## Setup
+
+### With Docker
+```sh
+$ cp .env.example .env
+$ docker-compose up -d
+```
+
+### Manually
 First install dependencies with
 ```
 $ npm install

@@ -10,7 +10,12 @@ const CONCURRENCY = parseInt(process.env.WORKER_CONCURRENCY) || 30;
 const challenges = require("./challenges.js");
 
 const start = async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    });
     browser.on("targetcreated", async (target) => {
         try {
             const page = await target.page();
