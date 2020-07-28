@@ -15,6 +15,7 @@ RECAPTCHA_PUBLIC_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 RECAPTCHA_PRIVATE_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 WORKER_CONCURRENCY=30
 REDIS_URL=redis://127.0.0.1:6379
+BULL_BOARD_PORT=8001
 ```
 
 The only setting you *must* provide a value for is `CHALLENGE_CONFIG`, which points to a YAML file containing challenge configuration. If you're running workers on multiple servers, make sure the Redis server is accessible from all of them. 
@@ -47,6 +48,7 @@ challenges:
 ```
 node server.js
 node worker.js
+node bull-board.js
 ```
 
 You can have as many workers as you like, but running multiple workers on one machine will likely not improve performance (untested). 

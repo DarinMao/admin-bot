@@ -7,9 +7,7 @@ const puppeteer = require("puppeteer");
 const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
 const CONCURRENCY = parseInt(process.env.WORKER_CONCURRENCY) || 30;
 
-const challenges = require("./challenges.js");
-
-const start = async () => {
+const start = async (challenges) => {
     const browser = await puppeteer.launch();
     browser.on("targetcreated", async (target) => {
         try {
@@ -49,4 +47,4 @@ const start = async () => {
     console.log("Worker ready");
 };
 
-start();
+module.exports = start
