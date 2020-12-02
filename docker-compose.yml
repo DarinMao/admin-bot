@@ -1,4 +1,4 @@
-version: "3"
+version: "2.4"
 services:
   server:
     build: .
@@ -16,5 +16,7 @@ services:
       - redis
     env_file:
       - .env
+    cap_add:
+      - SYS_ADMIN
   redis:
     image: redis
