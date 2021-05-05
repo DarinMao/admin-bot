@@ -10,7 +10,7 @@ const CONCURRENCY = parseInt(process.env.WORKER_CONCURRENCY) || 30;
 const challenges = require("./challenges.js");
 
 const start = async () => {
-    const browser = await puppeteer.launch({ env: {} });
+    const browser = await puppeteer.launch({ env: {}, pipe: true, dumpio: true });
     browser.on("targetcreated", async (target) => {
         try {
             const page = await target.page();
